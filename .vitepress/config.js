@@ -107,11 +107,6 @@ export default defineConfig({
   // 构建配置
   outDir: '../dist',
   cacheDir: './.vitepress/cache',
-
-  // 重定向配置
-  rewrites: {
-    'index.html': 'demo/redirect.html?to=%2Fdemo%2F'
-  },
   
   // Markdown配置
   markdown: {
