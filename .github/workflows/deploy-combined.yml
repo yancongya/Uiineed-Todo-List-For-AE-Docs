@@ -1,0 +1,104 @@
+name: Deploy Combined Site (Docs + Demo)
+
+on:
+  # 在推送到 main 分支时触发
+  push:
+    branches: [main]
+  
+  # 允许手动触发
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，允许部署到 GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许一个并发部署，跳过正在运行和最新队列之间的运行队列
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 构建工作
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Docs Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          path: docs
+      
+      - name: Checkout Main App Repository
+        uses: actions/checkout@v4
+        with:
+          repository: yancongya/Uiineed-Todo-List-For-AE
+          path: main-app
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Install dependencies
+        run: |
+          cd docs
+          npm ci
+      
+      - name: Build VitePress docs
+        run: |
+          cd docs
+          npm run docs:build
+      
+      - name: Prepare combined site
+        run: |
+          # 创建最终的部署目录
+          mkdir -p combined-site
+          
+          # 复制文档站点内容到根目录
+          cp -r docs/.vitepress/dist/* combined-site/
+          
+          # 创建demo目录并复制主应用内容
+          mkdir -p combined-site/demo
+          cp -r main-app/* combined-site/demo/
+          
+          # 确保CNAME文件在根目录
+          cp docs/public/CNAME combined-site/
+          
+          # 创建demo的重定向页面（如果需要）
+          echo '<!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="utf-8">
+              <title>UINeed Todo AE - 在线演示</title>
+              <meta http-equiv="refresh" content="0; url=/demo/">
+              <link rel="canonical" href="/demo/">
+          </head>
+          <body>
+              <p>正在跳转到演示页面... <a href="/demo/">点击这里</a></p>
+          </body>
+          </html>' > combined-site/demo.html
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: combined-site
+
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

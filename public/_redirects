@@ -1,0 +1,7 @@
+# Netlify重定向规则（如果使用Netlify）
+# 将旧的根路径重定向到demo
+/index.html /demo/ 301
+/app.js /demo/public/js/app.js 301
+/public/* /demo/public/:splat 301
+
+# GitHub Pages不直接支持_redirects文件，但可以作为备用方案

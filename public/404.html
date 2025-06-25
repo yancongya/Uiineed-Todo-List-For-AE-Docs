@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - UINeed Todo AE</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            font-weight: 300;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            opacity: 0.9;
+        }
+        .buttons {
+            margin: 2rem 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        .btn-primary:hover {
+            background: white;
+        }
+        .redirect-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2>页面未找到</h2>
+        <p>抱歉，您访问的页面不存在。可能是链接已经更改或页面已被移动。</p>
+        
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">返回首页</a>
+            <a href="/demo" class="btn">在线演示</a>
+            <a href="/guide/getting-started" class="btn">快速开始</a>
+        </div>
+        
+        <div class="redirect-info">
+            <p><strong>常见重定向：</strong></p>
+            <p>• 如果您要访问Todo应用，请前往 <a href="/demo" style="color: #fff; text-decoration: underline;">/demo</a></p>
+            <p>• 如果您要查看文档，请前往 <a href="/" style="color: #fff; text-decoration: underline;">首页</a></p>
+            <p>• 如果您要查看GitHub项目，请前往 <a href="https://github.com/yancongya/Uiineed-Todo-List-For-AE" style="color: #fff; text-decoration: underline;">GitHub</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 自动重定向逻辑
+        (function() {
+            const path = window.location.pathname;
+            const hash = window.location.hash;
+            
+            // 如果访问的是根路径的index.html，重定向到demo
+            if (path === '/index.html' || path.endsWith('/index.html')) {
+                window.location.replace('/demo/');
+                return;
+            }
+            
+            // 如果访问的是public目录下的资源，重定向到demo
+            if (path.startsWith('/public/')) {
+                window.location.replace('/demo' + path);
+                return;
+            }
+            
+            // 如果访问的是lib目录下的资源，重定向到demo
+            if (path.startsWith('/lib/')) {
+                window.location.replace('/demo' + path);
+                return;
+            }
+            
+            // 如果访问的是jsx目录下的资源，重定向到demo
+            if (path.startsWith('/jsx/')) {
+                window.location.replace('/demo' + path);
+                return;
+            }
+            
+            // 显示重定向提示
+            setTimeout(() => {
+                const redirectInfo = document.querySelector('.redirect-info');
+                if (redirectInfo) {
+                    redirectInfo.innerHTML += `<p style="margin-top: 1rem; font-style: italic;">当前访问路径: ${path}</p>`;
+                }
+            }, 1000);
+        })();
+    </script>
+</body>
+</html>
