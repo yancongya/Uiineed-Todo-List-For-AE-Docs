@@ -108,30 +108,15 @@ export default defineConfig({
   outDir: './.vitepress/dist',
   cacheDir: './.vitepress/cache',
 
-  // 忽略demo目录，避免VitePress处理其中的文件
-  srcExclude: ['demo/**'],
+  // 排除demo目录，避免VitePress处理其中的文件
+  srcExclude: ['**/public/demo/**'],
 
-  // 忽略死链接检查，因为demo目录会在构建后复制
+  // 忽略死链接检查，因为demo目录在public下会自动复制
   ignoreDeadLinks: [
     '/demo',
     '/demo/',
     /^\/demo\//
   ],
-
-  // 构建钩子
-  buildEnd: async (config) => {
-    // 构建完成后复制demo目录
-    const fs = await import('fs');
-    const path = await import('path');
-
-    const demoSrc = path.resolve(config.root || '.', 'demo');
-    const demoDest = path.resolve(config.outDir || 'dist', 'demo');
-
-    if (fs.existsSync(demoSrc)) {
-      await fs.promises.cp(demoSrc, demoDest, { recursive: true });
-      console.log('Demo directory copied to build output');
-    }
-  },
   
   // Markdown配置
   markdown: {
