@@ -147,6 +147,24 @@ window.copyWechat = function() {
 };
 
 (function() {
+  // 防止浏览器扩展错误影响脚本执行
+  window.addEventListener('error', function(e) {
+    if (e.filename && (e.filename.includes('content.js') || e.filename.includes('extension'))) {
+      e.preventDefault();
+      return true;
+    }
+  });
+
+  // 防止Promise rejection错误
+  window.addEventListener('unhandledrejection', function(e) {
+    if (e.reason && e.reason.message &&
+        (e.reason.message.includes('message port closed') ||
+         e.reason.message.includes('Extension context invalidated'))) {
+      e.preventDefault();
+      return true;
+    }
+  });
+
   // 添加自定义样式 - 支持明暗模式
   const customStyles = document.createElement('style');
   customStyles.textContent = `
@@ -244,7 +262,7 @@ window.copyWechat = function() {
           align-items: center;
           justify-content: flex-start;
         ">
-          <img src="/doc/author.gif" alt="作者头像" style="
+          <img src="/img/author.gif" alt="作者头像" style="
             margin-right: 8px;
             width: 44px;
             height: 44px;
@@ -272,35 +290,35 @@ window.copyWechat = function() {
           align-items: center;
         ">
           <a href="https://github.com/yancongya" target="_blank" class="social-link" style="opacity: 0.65; outline: none;">
-            <img src="/doc/img/social/github.svg" class="ic-social" alt="GitHub" title="GitHub" style="
+            <img src="/img/social/github.svg" class="ic-social" alt="GitHub" title="GitHub" style="
               width: auto;
               height: 20px;
               filter: var(--vp-icon-filter);
             ">
           </a>
           <a href="https://www.xiaohongshu.com/user/profile/5c009931f7e8b962bb328c6d" target="_blank" class="social-link" style="opacity: 0.65; outline: none;">
-            <img src="/doc/img/social/xiaohongshu.svg" class="ic-social" alt="小红书" title="小红书" style="
+            <img src="/img/social/xiaohongshu.svg" class="ic-social" alt="小红书" title="小红书" style="
               width: auto;
               height: 20px;
               filter: var(--vp-icon-filter);
             ">
           </a>
           <a href="https://space.bilibili.com/100881808?spm_id_from=333.1387.0.0" target="_blank" class="social-link" style="opacity: 0.65; outline: none;">
-            <img src="/doc/img/social/bilibili.svg" class="ic-social" alt="哔哩哔哩" title="哔哩哔哩" style="
+            <img src="/img/social/bilibili.svg" class="ic-social" alt="哔哩哔哩" title="哔哩哔哩" style="
               width: auto;
               height: 20px;
               filter: var(--vp-icon-filter);
             ">
           </a>
           <a href="https://afdian.tv/a/tycon" target="_blank" class="social-link" style="opacity: 0.65; outline: none;">
-            <img src="/doc/img/social/aifadian.svg" class="ic-social" alt="爱发电" title="爱发电" style="
+            <img src="/img/social/aifadian.svg" class="ic-social" alt="爱发电" title="爱发电" style="
               width: auto;
               height: 20px;
               filter: var(--vp-icon-filter);
             ">
           </a>
           <a href="javascript:void(0);" class="social-link" id="copy-email-btn" style="opacity: 0.65; outline: none; cursor: pointer;">
-            <img src="/doc/img/social/mail.svg" class="ic-social" alt="邮箱" title="点击复制邮箱" style="
+            <img src="/img/social/mail.svg" class="ic-social" alt="邮箱" title="点击复制邮箱" style="
               width: auto;
               height: 20px;
               filter: var(--vp-icon-filter);
@@ -327,7 +345,7 @@ window.copyWechat = function() {
             display: block;
             margin: 12px 0 6px;
           ">有问题可以添加微信☕</p>
-          <img src="/doc/img/wechat_qrcode.jpg" alt="微信二维码" class="zanshan-qr" id="copy-wechat-btn" style="
+          <img src="/img/wechat_qrcode.jpg" alt="微信二维码" class="zanshan-qr" id="copy-wechat-btn" style="
             width: 100%;
             height: auto;
             border-radius: 8px;
@@ -436,30 +454,30 @@ window.copyWechat = function() {
   });
 
   // 在DOM加载完成后，直接绑定点击事件到关于我图标
-  console.log('关于我面板脚本已加载');
-  
+
   // 使用MutationObserver监听DOM变化，确保在元素加载后绑定事件
   const observer = new MutationObserver(function(mutations) {
     // 尝试查找关于我图标
     const authorImages = document.querySelectorAll('img[src*="author.gif"]');
     if (authorImages.length > 0) {
-      console.log('找到关于我图标:', authorImages.length, '个');
-      
+
       // 为每个找到的图标添加点击事件
       authorImages.forEach(img => {
         // 获取最近的a标签父元素
         const linkParent = img.closest('a');
-        if (linkParent) {
-          console.log('为关于我图标添加点击事件');
-          
+        if (linkParent && !linkParent.hasAttribute('data-about-panel-bound')) {
+
           // 移除原有的点击事件（如果有）
           linkParent.removeEventListener('click', showAboutPanel);
-          
+
           // 添加新的点击事件
           linkParent.addEventListener('click', showAboutPanel);
+
+          // 标记已绑定，避免重复绑定
+          linkParent.setAttribute('data-about-panel-bound', 'true');
         }
       });
-      
+
       // 找到元素后停止观察
       observer.disconnect();
     }
@@ -467,7 +485,6 @@ window.copyWechat = function() {
   
   // 定义显示面板的函数
   function showAboutPanel(e) {
-    console.log('关于我按钮被点击');
     e.preventDefault();
     e.stopPropagation();
 
@@ -493,13 +510,15 @@ window.copyWechat = function() {
     subtree: true
   });
   
-  // 同时保留原来的点击事件监听，作为备用方案
+  // 统一的事件委托处理
   document.addEventListener('click', function(e) {
     const target = e.target;
-    
+
     // 检查是否点击了关于我图标或其父元素
     if ((target.tagName === 'IMG' && target.src.includes('author.gif')) ||
         target.closest('a[aria-label="关于我"]')) {
+      e.preventDefault();
+      e.stopPropagation();
       showAboutPanel(e);
     }
   });
@@ -513,34 +532,13 @@ if (document.readyState === 'loading') {
   initAboutPanel();
 }
 
-// 添加全局点击事件处理，确保在任何情况下都能捕获点击
+// 确保关于我图标有正确的样式
 window.addEventListener('load', function() {
-  console.log('Window loaded, adding global click handler');
-  
-  // 直接在window上添加点击事件，确保能捕获所有点击
   setTimeout(function() {
-    const authorLinks = document.querySelectorAll('a[aria-label="关于我"]');
-    console.log('找到关于我链接数量:', authorLinks.length);
-    
-    authorLinks.forEach(link => {
-      console.log('为关于我链接添加直接点击事件');
-      link.onclick = function(e) {
-        showAboutPanel(e);
-        return false;
-      };
-    });
-
-    // 查找所有author.gif图片并添加点击事件
+    // 为关于我图片添加指针样式
     const authorImages = document.querySelectorAll('img[src*="author.gif"]');
-    console.log('找到关于我图片数量:', authorImages.length);
-
     authorImages.forEach(img => {
-      console.log('为关于我图片添加直接点击事件');
       img.style.cursor = 'pointer';
-      img.onclick = function(e) {
-        showAboutPanel(e);
-        return false;
-      };
     });
   }, 1000);
 });

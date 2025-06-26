@@ -54,11 +54,11 @@ features:
 
 <div class="interface-preview">
   <div class="screenshot-gallery">
-    <img src="/sc1.jpg" alt="界面预览1" />
-    <img src="/sc2.jpg" alt="界面预览2" />
-    <img src="/sc3.jpg" alt="界面预览3" />
-    <img src="/sc4.jpg" alt="界面预览4" />
-    <img src="/sc5.jpg" alt="界面预览5" />
+    <img src="/img/sc/sc1.jpg" alt="界面预览1" />
+    <img src="/img/sc/sc2.jpg" alt="界面预览2" />
+    <img src="/img/sc/sc3.jpg" alt="界面预览3" />
+    <img src="/img/sc/sc4.jpg" alt="界面预览4" />
+    <img src="/img/sc/sc5.jpg" alt="界面预览5" />
   </div>
 </div>
 
@@ -66,19 +66,19 @@ features:
 
 <div class="demo-gallery">
   <div class="demo-item">
-    <img src="/创建任务.webp" alt="创建任务演示" />
+    <img src="/img/sc/创建任务.webp" alt="创建任务演示" />
     <p>创建任务</p>
   </div>
   <div class="demo-item">
-    <img src="/任务调整.webp" alt="任务调整演示" />
+    <img src="/img/sc/任务调整.webp" alt="任务调整演示" />
     <p>任务调整</p>
   </div>
   <div class="demo-item">
-    <img src="/操作.webp" alt="自适应操作" />
+    <img src="/img/sc/操作.webp" alt="自适应操作" />
     <p>自适应操作</p>
   </div>
   <div class="demo-item">
-    <img src="/修改名字.webp" alt="修改名字演示" />
+    <img src="/img/sc/修改名字.webp" alt="修改名字演示" />
     <p>修改名字</p>
   </div>
 </div>
