@@ -1,0 +1,126 @@
+name: 📦 Release AE Extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号 (例如: v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+        type: string
+      release_name:
+        description: '发布名称'
+        required: false
+        default: ''
+        type: string
+      release_notes:
+        description: '发布说明'
+        required: false
+        default: ''
+        type: string
+      prerelease:
+        description: '是否为预发布版本'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  release:
+    name: 🚀 打包并发布扩展
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 📋 验证demo文件夹
+        run: |
+          if [ ! -d "public/demo" ]; then
+            echo "❌ public/demo 文件夹不存在"
+            exit 1
+          fi
+          echo "✅ public/demo 文件夹存在"
+          echo "📁 文件夹内容："
+          ls -la public/demo/
+          
+      - name: 📦 创建扩展压缩包
+        run: |
+          cd public
+          # 创建临时目录
+          mkdir -p temp/Uiineed-Todo-List-For-AE
+          
+          # 复制demo文件夹内容到临时目录
+          cp -r demo/* temp/Uiineed-Todo-List-For-AE/
+          
+          # 创建压缩包
+          cd temp
+          zip -r "../Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip" Uiineed-Todo-List-For-AE/
+          
+          # 验证压缩包
+          echo "✅ 压缩包创建完成："
+          ls -la ../Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip
+          
+          # 清理临时目录
+          cd ..
+          rm -rf temp
+          
+      - name: 📝 生成发布说明
+        id: release_notes
+        run: |
+          if [ -n "${{ github.event.inputs.release_notes }}" ]; then
+            NOTES="${{ github.event.inputs.release_notes }}"
+          else
+            NOTES="## 🎉 UINeed Todo AE 扩展 ${{ github.event.inputs.version }}
+
+          ### 📦 安装说明
+          1. 下载 \`Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip\`
+          2. 解压到AE扩展目录：
+             - **Windows**: \`C:\\Program Files (x86)\\Common Files\\Adobe\\CEP\\extensions\`
+             - **macOS**: \`/Library/Application Support/Adobe/CEP/extensions\`
+          3. 首次安装需要开启CEP扩展调试模式：
+             - **Windows**: 以管理员身份运行 \`REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.11 /v PlayerDebugMode /t REG_STRING /d 1\`
+             - **macOS**: 终端运行 \`defaults write com.adobe.CSXS.11 PlayerDebugMode 1\`
+          4. 重启AE后，在"窗口 > 扩展"菜单中打开
+
+          ### 🚀 功能特性
+          - ✨ 流畅的UI交互动效
+          - 📝 创建、编辑、完成、删除待办事项
+          - 🔗 可拖拽进行任务排序
+          - 🔄 与AE项目集成，可直接在AE中使用
+          - 💾 本地存储保存、导出导入数据
+
+          ### 📖 相关链接
+          - 📚 [在线文档](https://docs.xn--jcs561df75a.space/)
+          - 🚀 [在线演示](https://todo.xn--jcs561df75a.space/)
+          - 💻 [项目源码](https://github.com/yancongya/Uiineed-Todo-List-For-AE-Docs)
+
+          ---
+          > 💡 如有问题或建议，欢迎在 [Issues](https://github.com/yancongya/Uiineed-Todo-List-For-AE-Docs/issues) 中反馈"
+          fi
+          
+          # 将发布说明保存到文件，处理多行文本
+          echo "$NOTES" > release_notes.md
+          echo "notes_file=release_notes.md" >> $GITHUB_OUTPUT
+          
+      - name: 🏷️ 创建Release并上传文件
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: ${{ github.event.inputs.release_name || format('UINeed Todo AE {0}', github.event.inputs.version) }}
+          body_path: ${{ steps.release_notes.outputs.notes_file }}
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease }}
+          files: ./public/Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ 发布完成
+        run: |
+          echo "🎉 Release 创建成功！"
+          echo "📦 压缩包: Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip"
+          echo "🔗 Release URL: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.inputs.version }}"
+          echo ""
+          echo "📋 下一步操作："
+          echo "1. 检查Release页面确认信息正确"
+          echo "2. 测试下载的压缩包是否正常"
+          echo "3. 在AE中测试扩展功能"
