@@ -131,8 +131,8 @@ export default defineConfig({
   outDir: './.vitepress/dist',
   cacheDir: './.vitepress/cache',
 
-  // 排除public/demo目录，但允许处理demo/index.md
-  srcExclude: ['**/public/demo/**'],
+  // 排除public/demo目录和README文件，但允许处理demo/index.md
+  srcExclude: ['**/public/demo/**', 'README.md', 'README.en.md'],
 
   // 忽略死链接检查，因为demo目录在public下会自动复制
   ignoreDeadLinks: [
