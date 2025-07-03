@@ -24,6 +24,9 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: 🚀 打包并发布扩展
@@ -115,16 +118,28 @@ jobs:
           echo "notes_file=release_notes.md" >> $GITHUB_OUTPUT
           
       - name: 🏷️ 创建Release并上传文件
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.event.inputs.version }}
-          name: ${{ github.event.inputs.release_name || format('UINeed Todo AE {0}', github.event.inputs.version) }}
-          body_path: ${{ steps.release_notes.outputs.notes_file }}
-          draft: false
-          prerelease: ${{ github.event.inputs.prerelease }}
-          files: ./Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 设置release名称
+          RELEASE_NAME="${{ github.event.inputs.release_name }}"
+          if [ -z "$RELEASE_NAME" ]; then
+            RELEASE_NAME="UINeed Todo AE ${{ github.event.inputs.version }}"
+          fi
+
+          # 创建release
+          if [ "${{ github.event.inputs.prerelease }}" = "true" ]; then
+            gh release create "${{ github.event.inputs.version }}" \
+              --title "$RELEASE_NAME" \
+              --notes-file "release_notes.md" \
+              --prerelease \
+              "Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip"
+          else
+            gh release create "${{ github.event.inputs.version }}" \
+              --title "$RELEASE_NAME" \
+              --notes-file "release_notes.md" \
+              "Uiineed-Todo-List-For-AE-${{ github.event.inputs.version }}.zip"
+          fi
 
       - name: ✅ 发布完成
         run: |
