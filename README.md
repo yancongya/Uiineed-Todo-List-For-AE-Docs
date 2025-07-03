@@ -7,7 +7,7 @@
   <h3>专为Adobe After Effects设计师打造的待办事项扩展</h3>
 
   <p>
-    <a href="https://todo.itycon.cn/">📖 在线文档</a> •
+    <a href="https://docs.xn--jcs561df75a.space/">📖 在线文档</a> •
     <a href="https://todo.xn--jcs561df75a.space/">🚀 在线演示</a> •
     <a href="https://github.com/yancongya/Uiineed-Todo-List-For-AE-Extension">💻 扩展源码</a>
   </p>
@@ -29,7 +29,7 @@
 ## 🌐 在线访问
 
 ### 文档站点
-- **主站点**: [https://todo.itycon.cn/](https://todo.itycon.cn/)
+- **主站点**: [https://docs.xn--jcs561df75a.space/](https://docs.xn--jcs561df75a.space/)
 - **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
 
 ### 在线演示

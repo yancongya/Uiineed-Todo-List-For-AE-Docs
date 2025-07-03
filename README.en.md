@@ -7,7 +7,7 @@ English | [简体中文](README.md)
   <h3>Professional Todo Extension for Adobe After Effects Designers</h3>
 
   <p>
-    <a href="https://todo.itycon.cn/">📖 Documentation</a> •
+    <a href="https://docs.xn--jcs561df75a.space/">📖 Documentation</a> •
     <a href="https://todo.xn--jcs561df75a.space/">🚀 Live Demo</a> •
     <a href="https://github.com/yancongya/Uiineed-Todo-List-For-AE">💻 Extension Source</a>
   </p>
@@ -29,7 +29,7 @@ This is the official documentation site for **UINeed Todo AE Extension**, built 
 ## 🌐 Online Access
 
 ### Documentation Site
-- **Main Site**: [https://todo.itycon.cn/](https://todo.itycon.cn/)
+- **Main Site**: [https://docs.xn--jcs561df75a.space/](https://docs.xn--jcs561df75a.space/)
 - **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
 
 ### Live Demo
