@@ -30,7 +30,7 @@ export default defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: 'UINeed Todo AE - 专为AE设计师打造的待办事项扩展' }],
     ['meta', { name: 'twitter:description', content: '专为Adobe After Effects设计师打造的待办事项扩展插件' }],
-    ['script', { src: '/js/about-panel.js' }]
+    ['script', { src: 'https://yancongya.github.io/Uiineed-Todo-List-For-AE/js/about-panel.js' }]
   ],
   
   // 主题配置
