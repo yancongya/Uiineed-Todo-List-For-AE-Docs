@@ -15,9 +15,9 @@ export default defineConfig({
 
   // 网站图标和meta信息
   head: [
-    ['link', { rel: 'icon', href: '/Uiineed-Todo-List-For-AE/img/favicon.png' }],
-    ['link', { rel: 'shortcut icon', href: '/Uiineed-Todo-List-For-AE/img/favicon.png' }],
-    ['link', { rel: 'apple-touch-icon', href: '/Uiineed-Todo-List-For-AE/img/apple-touch-icon.png' }],
+    ['link', { rel: 'icon', href: '/img/favicon.png' }],
+    ['link', { rel: 'shortcut icon', href: '/img/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', href: '/img/apple-touch-icon.png' }],
     ['meta', { name: 'theme-color', content: '#646cff' }],
     ['meta', { name: 'keywords', content: 'Adobe After Effects, AE扩展, 待办事项, Todo, 任务管理, 设计师工具, CEP扩展' }],
     ['meta', { name: 'author', content: '烟囱鸭' }],
@@ -30,14 +30,14 @@ export default defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: 'UINeed Todo AE - 专为AE设计师打造的待办事项扩展' }],
     ['meta', { name: 'twitter:description', content: '专为Adobe After Effects设计师打造的待办事项扩展插件' }],
-    ['script', { src: '/Uiineed-Todo-List-For-AE/js/about-panel.js' }]
+    ['script', { src: '/js/about-panel.js' }]
   ],
   
   // 主题配置
   themeConfig: {
     // 网站标题和Logo
     siteTitle: 'UINeed Todo AE',
-    logo: '/Uiineed-Todo-List-For-AE/img/logo.png',
+    logo: '/img/logo.png',
     
     // 导航栏
     nav: [

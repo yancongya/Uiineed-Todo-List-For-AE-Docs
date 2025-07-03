@@ -14,7 +14,7 @@ a[aria-label="关于我"] svg {
   height: 24px !important;
   border-radius: 50% !important;
   overflow: hidden !important;
-  background-image: url('/Uiineed-Todo-List-For-AE/img/author.gif') !important;
+  background-image: url('/img/author.gif') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
