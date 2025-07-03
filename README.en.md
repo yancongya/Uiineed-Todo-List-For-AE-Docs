@@ -3,12 +3,11 @@
 English | [简体中文](README.md)
 
 <div align="center">
-  <img src="public/img/logo.png" alt="UINeed Todo AE Logo" width="120" height="120">
-
+  <img src="public/img/todo.svg" alt="UINeed Todo AE Logo" width="120" height="120">
   <h3>Professional Todo Extension for Adobe After Effects Designers</h3>
 
   <p>
-    <a href="https://docs.xn--jcs561df75a.space/">📖 Documentation</a> •
+    <a href="https://todo.itycon.cn/">📖 Documentation</a> •
     <a href="https://todo.xn--jcs561df75a.space/">🚀 Live Demo</a> •
     <a href="https://github.com/yancongya/Uiineed-Todo-List-For-AE">💻 Extension Source</a>
   </p>
@@ -27,26 +26,22 @@ English | [简体中文](README.md)
 
 This is the official documentation site for **UINeed Todo AE Extension**, built with VitePress. This project provides professional todo management solutions for Adobe After Effects designers, featuring smooth animations and local data storage.
 
-## 📚 Documentation Features
+## 🌐 Online Access
 
-### 🌟 Comprehensive Documentation System
-- **📖 Project Introduction** - Detailed background and objectives
-- **🚀 Quick Start** - Step-by-step installation and configuration guide
-- **💡 User Guide** - Comprehensive feature usage instructions
-- **🔧 Development Docs** - Technical architecture and development guide
-- **❓ FAQ** - Problem solving and troubleshooting
+### Documentation Site
+- **Main Site**: [https://todo.itycon.cn/](https://todo.itycon.cn/)
+- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
 
-### 🎨 Modern Design
-- **Responsive Layout** - Perfect adaptation for desktop and mobile devices
-- **Light/Dark Theme** - Support for automatic switching and manual selection
-- **Search Functionality** - Site-wide content quick search
-- **Navigation Optimization** - Clear information architecture and navigation
+### Live Demo
+- **Demo Site**: [https://todo.xn--jcs561df75a.space/](https://todo.xn--jcs561df75a.space/)
+- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE/](https://yancongya.github.io/Uiineed-Todo-List-For-AE/)
 
-### 🚀 Technical Highlights
-- **VitePress** - Vite-based static site generator
-- **Vue 3** - Modern frontend framework
-- **TypeScript** - Type-safe development experience
-- **GitHub Pages** - Automated deployment and hosting
+### Notes
+
+- 📖 **Documentation Site** provides complete user guides and development documentation
+- 🚀 **Live Demo** allows direct experience of extension features, but cannot perform AE-specific operations
+- 💾 Online version data uses browser localStorage, cannot sync across different devices
+- 🔧 For full functionality, please download and install the AE extension version
 
 ## 📸 Interface Preview
 
@@ -224,20 +219,3 @@ Uiineed-Todo-List-For-AE-Docs/
 ├── index.md              # Homepage
 └── package.json          # Project configuration
 ```
-
-## 🌐 Online Access
-
-### Documentation Site
-- **Main Site**: [https://docs.xn--jcs561df75a.space/](https://docs.xn--jcs561df75a.space/)
-- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
-
-### Live Demo
-- **Demo Site**: [https://todo.xn--jcs561df75a.space/](https://todo.xn--jcs561df75a.space/)
-- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE/](https://yancongya.github.io/Uiineed-Todo-List-For-AE/)
-
-### Notes
-
-- 📖 **Documentation Site** provides complete user guides and development documentation
-- 🚀 **Live Demo** allows direct experience of extension features, but cannot perform AE-specific operations
-- 💾 Online version data uses browser localStorage, cannot sync across different devices
-- 🔧 For full functionality, please download and install the AE extension version

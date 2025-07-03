@@ -10,7 +10,7 @@ export default defineConfig({
 
   // SEO配置
   sitemap: {
-    hostname: 'https://docs.xn--jcs561df75a.space'
+    hostname: 'https://todo.itycon.cn'
   },
 
   // 网站图标和meta信息
@@ -26,7 +26,7 @@ export default defineConfig({
     ['meta', { name: 'og:site_name', content: 'UINeed Todo AE 文档' }],
     ['meta', { name: 'og:title', content: 'UINeed Todo AE - 专为AE设计师打造的待办事项扩展' }],
     ['meta', { name: 'og:description', content: '专为Adobe After Effects设计师打造的待办事项扩展插件，支持流畅动效和本地数据存储，提升AE工作效率' }],
-    ['meta', { name: 'og:image', content: 'https://docs.xn--jcs561df75a.space/img/sc/screenshot-main.jpg' }],
+    ['meta', { name: 'og:image', content: 'https://todo.itycon.cn/img/sc/screenshot-main.jpg' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: 'UINeed Todo AE - 专为AE设计师打造的待办事项扩展' }],
     ['meta', { name: 'twitter:description', content: '专为Adobe After Effects设计师打造的待办事项扩展插件' }],

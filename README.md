@@ -3,12 +3,11 @@
 [English](README.en.md) | 简体中文
 
 <div align="center">
-  <img src="public/img/logo.png" alt="UINeed Todo AE Logo" width="120" height="120">
-
+  <img src="public/img/todo.svg" alt="UINeed Todo AE Logo" width="120" height="120">
   <h3>专为Adobe After Effects设计师打造的待办事项扩展</h3>
 
   <p>
-    <a href="https://docs.xn--jcs561df75a.space/">📖 在线文档</a> •
+    <a href="https://todo.itycon.cn/">📖 在线文档</a> •
     <a href="https://todo.xn--jcs561df75a.space/">🚀 在线演示</a> •
     <a href="https://github.com/yancongya/Uiineed-Todo-List-For-AE-Extension">💻 扩展源码</a>
   </p>
@@ -27,28 +26,24 @@
 
 这是 **UINeed Todo AE 扩展** 的官方文档站点，基于 VitePress 构建。本项目为Adobe After Effects设计师提供专业的待办事项管理解决方案，支持流畅动效和本地数据存储。
 
-## � 文档站点特性
+## 🌐 在线访问
 
-### 🌟 完整的文档体系
-- **📖 项目介绍** - 详细的背景和目标说明
-- **🚀 快速开始** - 一步步安装和配置指南
-- **💡 使用教程** - 全面的功能使用说明
-- **🔧 开发文档** - 技术架构和开发指南
-- **❓ 常见问题** - 问题解答和故障排除
+### 文档站点
+- **主站点**: [https://todo.itycon.cn/](https://todo.itycon.cn/)
+- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
 
-### 🎨 现代化设计
-- **响应式布局** - 完美适配桌面和移动设备
-- **明暗主题** - 支持自动切换和手动选择
-- **搜索功能** - 全站内容快速搜索
-- **导航优化** - 清晰的信息架构和导航
+### 在线演示
+- **演示站点**: [https://todo.xn--jcs561df75a.space/](https://todo.xn--jcs561df75a.space/)
+- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE/](https://yancongya.github.io/Uiineed-Todo-List-For-AE/)
 
-### 🚀 技术亮点
-- **VitePress** - 基于Vite的静态站点生成器
-- **Vue 3** - 现代化的前端框架
-- **TypeScript** - 类型安全的开发体验
-- **GitHub Pages** - 自动化部署和托管
+### 注意事项
 
-## �📸 界面预览
+- 📖 **文档站点** 提供完整的使用指南和开发文档
+- 🚀 **在线演示** 可以直接体验扩展功能，但无法进行AE特有操作
+- 💾 在线版本数据使用浏览器localStorage存储，不同设备无法同步
+- 🔧 完整功能请下载并安装AE扩展版本
+
+## 📸 扩展界面预览
 
 <div align="center">
   <div style="overflow-x: auto; white-space: nowrap; padding: 10px 0;">
@@ -216,7 +211,7 @@ npm run docs:preview
 ### 项目结构
 
 ```
-Uiineed-Todo-List-For-AE-Docs/
+Uiineed-Todo-List-For-AE/
 ├── .vitepress/           # VitePress 配置
 │   ├── config.js         # 站点配置
 │   └── theme/            # 自定义主题
@@ -229,21 +224,4 @@ Uiineed-Todo-List-For-AE-Docs/
 ├── index.md              # 首页
 └── package.json          # 项目配置
 ```
-
-## 🌐 在线访问
-
-### 文档站点
-- **主站点**: [https://docs.xn--jcs561df75a.space/](https://docs.xn--jcs561df75a.space/)
-- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/](https://yancongya.github.io/Uiineed-Todo-List-For-AE-Docs/)
-
-### 在线演示
-- **演示站点**: [https://todo.xn--jcs561df75a.space/](https://todo.xn--jcs561df75a.space/)
-- **GitHub Pages**: [https://yancongya.github.io/Uiineed-Todo-List-For-AE/](https://yancongya.github.io/Uiineed-Todo-List-For-AE/)
-
-### 注意事项
-
-- 📖 **文档站点** 提供完整的使用指南和开发文档
-- 🚀 **在线演示** 可以直接体验扩展功能，但无法进行AE特有操作
-- 💾 在线版本数据使用浏览器localStorage存储，不同设备无法同步
-- 🔧 完整功能请下载并安装AE扩展版本
 
