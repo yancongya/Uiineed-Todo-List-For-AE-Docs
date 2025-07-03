@@ -37,7 +37,7 @@ export default defineConfig({
   themeConfig: {
     // 网站标题和Logo
     siteTitle: 'UINeed Todo AE',
-    logo: '/img/logo.png',
+    logo: '/img/todo.svg',
     
     // 导航栏
     nav: [
